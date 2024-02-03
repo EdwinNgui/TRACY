@@ -65,11 +65,11 @@ def create_heatmap(data, title, xlabel, ylabel, orientation='vertical', rotate_d
     plt.show()
 
 # Read ball data
-ball_data_path = r'./heatmap_functions/Data/ball1.txt'
+ball_data_path = r'./graph_functions/Data/ball1.txt'
 ball_positions = read_ball_data(ball_data_path)
 
 # Read player data
-player_data_path = r'./heatmap_functions/Data/player1.txt'
+player_data_path = r'./graph_functions/Data/player1.txt'
 player_positions_1, player_positions_2 = read_player_data(player_data_path)
 
 # Create and display stretched ball heatmap with vmax=20 and aspect_ratio=2.0 for horizontal stretch
