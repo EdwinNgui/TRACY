@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 
 // Resources
-import Logo from './Resources/TennisLogo.png';
+import Logo from './Resources/tracylogo.png';
 import DemoVideo from "./Resources/sampledemodim.mp4";
 
 function App() {
@@ -36,7 +36,6 @@ function App() {
 
       {/* Landing Page */}
       <header className="header">
-        <h1 className="title">TENNIS ANALYZER</h1>
         <img className="logo" src={Logo} alt="Logo" />
       </header>
       
