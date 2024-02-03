@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import { fetchData } from './ChatComponent';
 
 // Resources
 import Logo from './Resources/TennisLogo.png';
@@ -17,6 +18,10 @@ function App() {
     const videoUrl = URL.createObjectURL(videoFile);
     setVideoPreview(videoUrl);
     setUploadStatus('File upload successful');
+  };
+
+  const handleGPTRequest = (event) => {
+    
   };
 
   return (
@@ -90,6 +95,8 @@ function App() {
           </div>
         </div>
       </div>
+      <script type="module" src="ChatComponent.js"></script>
+
     </div>
   );
 }
