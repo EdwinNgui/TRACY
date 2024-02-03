@@ -26,11 +26,20 @@ def detect_bounces(ball_positions):
 
     return bounce_indices
 
-def plot_ball_trajectory(ball_positions, bounce_indices, serve_indices, aspect_ratio=1.0, flip_y=False):
+def plot_ball_trajectory(ball_positions, bounce_indices, serve_indices, speed_indices, aspect_ratio=1.0, flip_y=False):
     plt.figure(figsize=(aspect_ratio * 6, 6))  # Adjust the figure size based on the aspect ratio
+
+    court_coordinates_singles = np.array([[286, 561], [1379, 561], [1379, 2935], [286, 2935], [286, 561]])
+    plt.plot(court_coordinates_singles[:, 0], court_coordinates_singles[:, 1])
+
+    net = np.array([[186, 1748], [1479, 1748]])
+    plt.plot(net[:, 0], net[:, 1])
+
     plt.plot(ball_positions[:, 0], ball_positions[:, 1], label='Ball Trajectory')
+
     plt.scatter(ball_positions[bounce_indices, 0], ball_positions[bounce_indices, 1], c='red', label='Bounce Points')
     plt.scatter(ball_positions[serve_indices, 0], ball_positions[serve_indices, 1], c='purple', label='Serve Points')
+    plt.scatter(ball_positions[speed_indices, 0], ball_positions[speed_indices, 1], c='green', label='Speed Points')
     plt.title('Ball Trajectory with Bounce Points')
     plt.xlabel('X-axis')
     plt.ylabel('Y-axis')
@@ -39,6 +48,9 @@ def plot_ball_trajectory(ball_positions, bounce_indices, serve_indices, aspect_r
 
     if flip_y:
         plt.gca().invert_yaxis()  # Flip the x-axis
+
+    plt.xlim(0, 1665)
+    plt.ylim(0, 3496)
 
     plt.show()
 
@@ -144,7 +156,7 @@ def get_serve_speed(ball_positions, serve_indices):
             pixel_dist = math.dist(ball_positions[start], ball_positions[end])
             metre_dist = (pixel_dist * 23.77) / 2374.0
             kmh = (metre_dist / (1/30)) * 8
-            return kmh
+            return kmh, (start, end)
 
 
 # Read ball data
@@ -155,10 +167,10 @@ ball_positions = read_ball_data(ball_data_path)
 bounce_indices = detect_bounces(ball_positions)
 
 serve_indices = get_serve_indices(ball_positions, bounce_indices)
-serve_speed = get_serve_speed(ball_positions, serve_indices)
+serve_speed, speed_indices = get_serve_speed(ball_positions, serve_indices)
 
 # Plot ball trajectory with bounce points and aspect ratio of 2.0
-plot_ball_trajectory(ball_positions, bounce_indices, serve_indices, aspect_ratio=0.6, flip_y=True)
+plot_ball_trajectory(ball_positions, bounce_indices, serve_indices, speed_indices, aspect_ratio=0.6, flip_y=True)
 
 # Plot the bounce grid ratios
 plot_bounce_grid(ball_positions, bounce_indices)
