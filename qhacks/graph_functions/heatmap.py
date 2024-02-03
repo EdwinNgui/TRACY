@@ -76,5 +76,5 @@ player_positions_1, player_positions_2 = read_player_data(player_data_path)
 create_heatmap(ball_positions, 'Ball Heat Map', 'X-axis', 'Y-axis', vmax=20, aspect_ratio=0.6)
 
 # Create and display heatmaps with horizontal orientation for player positions
-create_heatmap(player_positions_1, 'Player 1 Heat Map', 'Y-axis', 'X-axis', orientation='horizontal', rotate_degrees=90, aspect_ratio=0.2, vmax=10)
-create_heatmap(player_positions_2, 'Player 2 Heat Map', 'Y-axis', 'X-axis', orientation='horizontal')
+create_heatmap(player_positions_1, 'Player 1 Heat Map', 'Y-axis', 'X-axis', orientation='horizontal', rotate_degrees=90, aspect_ratio=0.3, vmax=10)
+create_heatmap(player_positions_2, 'Player 2 Heat Map', 'Y-axis', 'X-axis', orientation='horizontal', aspect_ratio=0.4)

@@ -89,6 +89,47 @@ function App() {
           </div>
         </div>
       </div>
+
+      {/* Visualized Data Section */}
+      <div className="background-green">
+        <div className='data-container'>
+
+        {/* Button Section */}
+        <div className="button-container">
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((number) => (
+              <button key={number}>{number}</button>
+            ))}
+          </div>
+
+          {/* Video and Images Section */}
+          <div className="video-container">
+            <div className="video">
+              {/* Your big video component goes here */}
+            </div>
+            <div className="image-container">
+              {/* First Image: Player 1 heat map */}
+              <img src="path/to/first-image.jpg" alt="First Image" />
+
+              {/* Second Image: Player 1 heat map */}
+              <img src="path/to/second-image.jpg" alt="Second Image" />
+            </div>
+          </div>
+
+          {/* Text Columns Section */}
+          <div className="text-columns">
+            <div className="column">Serve Speed Goes Here</div>
+            <div className="column">Landing Spot graph goes here (it's green/red)</div>
+            <div className="column">Ball Heat Map goes here</div>
+          </div>
+
+
+
+
+
+
+        </div>
+      </div>
+
     </div>
   );
 }
