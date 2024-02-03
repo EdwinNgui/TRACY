@@ -94,31 +94,31 @@ function App() {
 
         {/* Your Summary Section */}
         <div className="summary-section">
-          <h2>Your Summary</h2>
+          <h2 className='summary-header'>Your AI-Powered Summary</h2>
           <div className="summary-box">
-            <p>Bot (Tennis Coach): "Impressive serve speed! To address the challenges with your backhand, let's focus on a few key areas:
+            <p><strong>Tracy your Tennis Coach</strong>: "Impressive serve speed! To address the challenges with your backhand, let's focus on a few key areas:<br/><br/>
 
-                Backhand Technique:
+                <strong>Backhand Technique:</strong><br/>
 
-                Ensure a proper grip on the racket.
-                Work on a consistent and controlled swing motion.
-                Practice using your legs to generate power and stability.
-                Footwork:
+                Ensure a proper grip on the racket.<br/>
+                Work on a consistent and controlled swing motion.<br/>
+                Practice using your legs to generate power and stability.<br/><br/>
+                <strong>Footwork:</strong><br/>
 
-                Improve your lateral movement to cover the court efficiently.
-                Focus on positioning yourself early for backhand shots.
-                Drills and Exercises:
+                Improve your lateral movement to cover the court efficiently.<br/>
+                Focus on positioning yourself early for backhand shots.<br/><br/>
+                <strong>Drills and Exercises:</strong><br/>
 
-                Incorporate drills specifically targeting your backhand.
-                Work on both defensive and offensive scenarios to build versatility.
-                Match Strategy:
+                Incorporate drills specifically targeting your backhand.<br/>
+                Work on both defensive and offensive scenarios to build versatility.<br/><br/>
+                <strong>Match Strategy:</strong><br/>
 
-                Identify patterns in opponents' shots to anticipate backhand challenges.
-                Develop strategies to redirect shots effectively.
-                Mental Toughness:
+                Identify patterns in opponents' shots to anticipate backhand challenges.<br/>
+                Develop strategies to redirect shots effectively.<br/><br/>
+                <strong>Mental Toughness:</strong><br/>
 
-                Build confidence in your backhand through mental conditioning.
-                Stay focused during pressure situations.
+                Build confidence in your backhand through mental conditioning.<br/>
+                Stay focused during pressure situations.<br/><br/>
                 Remember to practice consistently, and consider seeking guidance from a local tennis coach for personalized feedback. Keep up the hard work, and you'll see improvements in no time!</p>
           </div>
         </div>
