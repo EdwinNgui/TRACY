@@ -1,5 +1,6 @@
 import re
 import numpy as np
+import math
 import matplotlib.pyplot as plt
 from matplotlib.gridspec import GridSpec
 
@@ -25,10 +26,11 @@ def detect_bounces(ball_positions):
 
     return bounce_indices
 
-def plot_ball_trajectory(ball_positions, bounce_indices, aspect_ratio=1.0, flip_y=False):
+def plot_ball_trajectory(ball_positions, bounce_indices, serve_indices, aspect_ratio=1.0, flip_y=False):
     plt.figure(figsize=(aspect_ratio * 6, 6))  # Adjust the figure size based on the aspect ratio
     plt.plot(ball_positions[:, 0], ball_positions[:, 1], label='Ball Trajectory')
     plt.scatter(ball_positions[bounce_indices, 0], ball_positions[bounce_indices, 1], c='red', label='Bounce Points')
+    plt.scatter(ball_positions[serve_indices, 0], ball_positions[serve_indices, 1], c='purple', label='Serve Points')
     plt.title('Ball Trajectory with Bounce Points')
     plt.xlabel('X-axis')
     plt.ylabel('Y-axis')
@@ -49,11 +51,6 @@ def plot_bounce_grid(ball_positions, bounce_indices):
     mid_y = (np.min(ball_positions[:, 1]) + np.max(ball_positions[:, 1])) / 2
     top_half = ball_positions[ball_positions[:, 1] > mid_y]
     bottom_half = ball_positions[ball_positions[:, 1] <= mid_y]
-
-    # Check if there are enough bounces to create the grid
-    if len(bounce_indices) < 9:
-        print("Not enough bounces to create the grid.")
-        return
 
     # Check if bounce_indices are within bounds
     if max(bounce_indices) >= len(top_half) or max(bounce_indices) >= len(bottom_half):
@@ -126,6 +123,30 @@ def plot_bounce_grid(ball_positions, bounce_indices):
     plt.tight_layout()
     plt.show()
 
+def get_serve_indices(ball_positions, bounce_indices):
+    if len(bounce_indices) == 0:
+        print("No bounces detected.")
+        return
+    middle_line = 1748 
+    for index in range(1, len(bounce_indices)):
+        start = bounce_indices[index-1]
+        end = bounce_indices[index]
+        if (ball_positions[start][1] < middle_line and ball_positions[end][1] > middle_line) or (ball_positions[start][1] > middle_line and ball_positions[end][1] < middle_line):
+            return (start, end)
+    return None
+
+def get_serve_speed(ball_positions, serve_indices):
+    middle_line = 1748 
+    for index in range(serve_indices[0]+1, serve_indices[1]):
+        start = index-1
+        end = index
+        if (ball_positions[start][1] < middle_line and ball_positions[end][1] > middle_line) or (ball_positions[start][1] > middle_line and ball_positions[end][1] < middle_line):
+            pixel_dist = math.dist(ball_positions[start], ball_positions[end])
+            metre_dist = (pixel_dist * 23.77) / 2374.0
+            kmh = (metre_dist / (1/30)) * 8
+            return kmh
+
+
 # Read ball data
 ball_data_path = r'./graph_functions/Data/ball1.txt'
 ball_positions = read_ball_data(ball_data_path)
@@ -133,11 +154,20 @@ ball_positions = read_ball_data(ball_data_path)
 # Detect bounces
 bounce_indices = detect_bounces(ball_positions)
 
+serve_indices = get_serve_indices(ball_positions, bounce_indices)
+serve_speed = get_serve_speed(ball_positions, serve_indices)
+
 # Plot ball trajectory with bounce points and aspect ratio of 2.0
-plot_ball_trajectory(ball_positions, bounce_indices, aspect_ratio=0.6, flip_y=True)
+plot_ball_trajectory(ball_positions, bounce_indices, serve_indices, aspect_ratio=0.6, flip_y=True)
 
 # Plot the bounce grid ratios
 plot_bounce_grid(ball_positions, bounce_indices)
 
+# # Display the frame indices where bounces occurred
+# print("Bounce Frame Indices:")
+# for index in bounce_indices:
+#     print(ball_positions[index])
+
 # Display the frame indices where bounces occurred
-print("Bounce Frame Indices:", bounce_indices)
+print("Serve Frame Indices:", serve_indices)
+print("Serve Speed:", serve_speed)
