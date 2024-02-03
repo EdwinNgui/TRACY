@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import { fetchData } from './ChatComponent';
+import axios from 'axios';
 
 // Resources
 import Logo from './Resources/tracylogo.png';
@@ -14,18 +14,24 @@ function App() {
   const [summaryPoints, setSummaryPoints] = useState([]);
   const [videoPreview, setVideoPreview] = useState(null);
   const [uploadStatus, setUploadStatus] = useState('');
+  const [text, setText] = useState('');
 
-  const handleFileUpload = (event) => {
+  const handleFileUpload = async (event) => {
     const videoFile = event.target.files[0];
 
     // Simulating a successful upload locally
     const videoUrl = URL.createObjectURL(videoFile);
     setVideoPreview(videoUrl);
     setUploadStatus('File upload successful');
-  };
 
-  const handleGPTRequest = (event) => {
-    
+    try {
+      let payload = {'sample': 'sample'}
+      const response = await axios.get('http://127.0.0.1:3000/post_text');
+      const responseData = response.data; // Assuming the response is a JSON object
+      console.log(responseData);
+    } catch (error) {
+      console.error('Error posting text:', error);
+    }
   };
 
   return (
