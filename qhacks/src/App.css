@@ -8,7 +8,27 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: #4caf50;
+}
+
+.background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure the video covers the entire header area */
+  z-index: -1; /* Place the video behind other content */
+}
+
+.background-video::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 25%, rgba(0, 0, 0, 0.4) 75%);
+  z-index: -2;
 }
 
 .header {
@@ -43,8 +63,12 @@ body {
   flex: 1;
   padding: 10%;
   text-align: left;
-  background: linear-gradient(to bottom, #f2f5f3 75%, #4caf50 95%);
+  background: linear-gradient(to bottom, rgba(242, 245, 243, 0) 75%, #4caf50 95%);
   padding-bottom: 20%;
+}
+
+.background-green{
+  background: #4caf50;
 }
 
 .small-text {
@@ -56,13 +80,13 @@ body {
 .massive-text {
   font-size: 140px;
   font-weight: bold;
-  color: black;
+  color: white;
   margin: 20px 0;
 }
 
 .description-text {
   font-size: 36px;
-  color: black;
+  color: white;
   margin-bottom: 40px;
 }
 
@@ -114,7 +138,8 @@ body {
   color: black;
   border-radius: 10px;
   margin: 5% auto;
-  min-width: 60%; /* Set to 75% of the screen */
+  min-width: 50%; /* Set to 75% of the screen */
+  max-width: 70%;
 }
 
 .summary-box {

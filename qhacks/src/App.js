@@ -1,7 +1,10 @@
 // src/App.js
 import React, { useState } from 'react';
-import Logo from './Resources/TennisLogo.png';
 import './App.css';
+
+// Resources
+import Logo from './Resources/TennisLogo.png';
+import DemoVideo from "./Resources/sampledemodim.mp4";
 
 function App() {
   const [summaryPoints, setSummaryPoints] = useState([]);
@@ -31,6 +34,11 @@ function App() {
 
   return (
     <div className="container">
+      {/* Video Background */}
+      <video className="background-video" autoPlay muted loop>
+        <source src={DemoVideo} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
 
       {/* Landing Page */}
       <header className="header">
@@ -44,9 +52,11 @@ function App() {
         <p className="description-text">Never lose another match to the same mistakes again.</p>
       </div>
 
-      {/* Space */}
-      <div style={{ marginBottom: '50px' }} />
-
+      {/* Bottom Section */}
+      <div className='background-green'>
+        {/* Space */}
+        <div style={{ marginBottom: '50px' }} />
+      
       {/* Video Input Section */}
       <div className="video-input-section">
         <h2 className="Upload-header">Upload Your Tennis Game Video (MP4)</h2>
@@ -71,7 +81,7 @@ function App() {
           </ul>
         </div>
       </div>
-
+      </div>
     </div>
   );
 }
