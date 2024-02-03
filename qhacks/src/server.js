@@ -23,10 +23,10 @@ app.post('/upload', (req, res) => {
     console.log(videoFilePath);
 
     videoFile.mv(videoFilePath, (err) => {
-      // if (err) {
-      //   console.error('File upload error:', err);
-      //   return res.status(500).send(err);
-      // }
+      if (err) {
+        console.error('File upload error:', err);
+        return res.status(500).send(err);
+      }
 
       const pythonProcess = spawn('python', ['extract_gameplay.py', videoFilePath]);
 
