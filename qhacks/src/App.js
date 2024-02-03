@@ -1,4 +1,3 @@
-// src/App.js
 import React, { useState } from 'react';
 import './App.css';
 
@@ -11,16 +10,16 @@ function App() {
 
   const handleFileUpload = async (event) => {
     const videoFile = event.target.files[0];
-
+  
     const formData = new FormData();
     formData.append('file', videoFile);
-
+  
     try {
-      const response = await fetch('/upload', {
+      const response = await fetch('http://localhost:3001/upload', {
         method: 'POST',
         body: formData,
       });
-
+  
       if (response.ok) {
         const summary = await response.json();
         setSummaryPoints(summary.points);
