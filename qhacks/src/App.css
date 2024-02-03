@@ -81,7 +81,7 @@ body {
   font-size: 140px;
   font-weight: bold;
   color: white;
-  margin: 20px 0;
+  margin: 20px 0px;
 }
 
 .description-text {
@@ -95,7 +95,7 @@ body {
   padding: 5%;
   background-color: #f2f5f3;
   color: white;
-  border-radius: 10px;
+  border-radius: 30px;
   margin: 5% auto;
   max-width: 60%;
 }
@@ -112,6 +112,15 @@ body {
 }
 
 /* New styles for the video box */
+.Upload-status{
+  color: black;
+  font-size: 20px;
+}
+
+.video-dimensions{
+  margin-top: -50px;
+}
+
 .Upload-header {
   color: black;
   font-size: 24px;
@@ -136,7 +145,7 @@ body {
   padding: 5%;
   background-color: #f2f5f3;
   color: black;
-  border-radius: 10px;
+  border-radius: 30px;
   margin: 5% auto;
   min-width: 50%; /* Set to 75% of the screen */
   max-width: 70%;

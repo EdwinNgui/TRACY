@@ -1,4 +1,3 @@
-// src/App.js
 import React, { useState } from 'react';
 import './App.css';
 
@@ -8,37 +7,32 @@ import DemoVideo from "./Resources/sampledemodim.mp4";
 
 function App() {
   const [summaryPoints, setSummaryPoints] = useState([]);
+  const [videoPreview, setVideoPreview] = useState(null);
+  const [uploadStatus, setUploadStatus] = useState('');
 
-  const handleFileUpload = async (event) => {
+  const handleFileUpload = (event) => {
     const videoFile = event.target.files[0];
 
-    const formData = new FormData();
-    formData.append('file', videoFile);
-
-    try {
-      const response = await fetch('/upload', {
-        method: 'POST',
-        body: formData,
-      });
-
-      if (response.ok) {
-        const summary = await response.json();
-        setSummaryPoints(summary.points);
-      } else {
-        console.error('Failed to upload video');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-    }
+    // Simulating a successful upload locally
+    const videoUrl = URL.createObjectURL(videoFile);
+    setVideoPreview(videoUrl);
+    setUploadStatus('File upload successful');
   };
 
   return (
     <div className="container">
       {/* Video Background */}
-      <video className="background-video" autoPlay muted loop>
-        <source src={DemoVideo} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+      {videoPreview ? (
+        <video className="background-video" autoPlay muted loop>
+          <source src={videoPreview} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      ) : (
+        <video className="background-video" autoPlay muted loop>
+          <source src={DemoVideo} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      )}
 
       {/* Landing Page */}
       <header className="header">
@@ -57,30 +51,44 @@ function App() {
         {/* Space */}
         <div style={{ marginBottom: '50px' }} />
       
-      {/* Video Input Section */}
-      <div className="video-input-section">
-        <h2 className="Upload-header">Upload Your Tennis Game Video (MP4)</h2>
-        <label className="file-input-label">
-          <input type="file" accept="video/mp4" className="file-input" onChange={handleFileUpload} />
-          <span className="Upload-buttontext">Choose File</span>
-        </label>
-        <p className="Upload-desc">Start Your Premium AI Analysis to Improve Your Matches Today</p>
-      </div>
+        {/* Video Input Section */}
+        <div className="video-input-section">
+          <h2 className="Upload-header">Upload Your Tennis Game Video (MP4)</h2>
+          <label className="file-input-label">
+            <input type="file" accept="video/mp4" className="file-input" onChange={handleFileUpload} />
+            <span className="Upload-buttontext">Choose File</span>
+          </label>
+          <p className="Upload-desc">Start Your Premium AI Analysis to Improve Your Matches Today</p>
 
-      {/* Space */}
-      <div style={{ marginBottom: '50px' }} />
+          {/* Conditional rendering of the horizontal bar line */}
+          {videoPreview && <hr />}
 
-      {/* Your Summary Section */}
-      <div className="summary-section">
-        <h2>Your Summary</h2>
-        <div className="summary-box">
-          <ul>
-            {summaryPoints.map((point, index) => (
-              <li key={index}>{point}</li>
-            ))}
-          </ul>
+          {uploadStatus && <p className="Upload-status">{uploadStatus}</p>}
+
+          {videoPreview && (
+            <div className='video-dimensions'>
+              <video width="640" height="480" controls>
+                <source src={videoPreview} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          )}
         </div>
-      </div>
+
+        {/* Space */}
+        <div style={{ marginBottom: '50px' }} />
+
+        {/* Your Summary Section */}
+        <div className="summary-section">
+          <h2>Your Summary</h2>
+          <div className="summary-box">
+            <ul>
+              {summaryPoints.map((point, index) => (
+                <li key={index}>{point}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   );
