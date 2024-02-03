@@ -10,22 +10,29 @@ function App() {
 
   const handleFileUpload = async (event) => {
     const videoFile = event.target.files[0];
-  
+    
     const formData = new FormData();
     formData.append('file', videoFile);
   
     try {
       const response = await fetch('http://localhost:3001/upload', {
         method: 'POST',
+        headers: { 'content-type': 'multipart/form-data' },
         body: formData,
       });
   
-      if (response.ok) {
-        const summary = await response.json();
-        setSummaryPoints(summary.points);
-      } else {
-        console.error('Failed to upload video');
-      }
+      console.log(response);
+
+      const data = await response.json();
+      console.log({ data });
+
+      // if (response.type === 'opaque' || response.ok) {
+      //   const summary = await response.json();
+      //   console.log(summary);
+      //   setSummaryPoints(summary.points);
+      // } else {
+      //   console.error('Failed to upload video');
+      // }
     } catch (error) {
       console.error('Error:', error);
     }
