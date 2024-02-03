@@ -4,6 +4,10 @@ import './App.css';
 // Resources
 import Logo from './Resources/tracylogo.png';
 import DemoVideo from "./Resources/sampledemodim.mp4";
+import BallHeatmap from "./Resources/DataVisualized/ball_heatmap.png";
+import BallTrajectory from "./Resources/DataVisualized/ball_trajectory.png";
+import P1Heatmap from "./Resources/DataVisualized/p1_heatmap.png";
+import P2Heatmap from "./Resources/DataVisualized/p2_heatmap.png";
 
 function App() {
   const [summaryPoints, setSummaryPoints] = useState([]);
@@ -81,11 +85,30 @@ function App() {
         <div className="summary-section">
           <h2>Your Summary</h2>
           <div className="summary-box">
-            <ul>
-              {summaryPoints.map((point, index) => (
-                <li key={index}>{point}</li>
-              ))}
-            </ul>
+            <p>Bot (Tennis Coach): "Impressive serve speed! To address the challenges with your backhand, let's focus on a few key areas:
+
+                Backhand Technique:
+
+                Ensure a proper grip on the racket.
+                Work on a consistent and controlled swing motion.
+                Practice using your legs to generate power and stability.
+                Footwork:
+
+                Improve your lateral movement to cover the court efficiently.
+                Focus on positioning yourself early for backhand shots.
+                Drills and Exercises:
+
+                Incorporate drills specifically targeting your backhand.
+                Work on both defensive and offensive scenarios to build versatility.
+                Match Strategy:
+
+                Identify patterns in opponents' shots to anticipate backhand challenges.
+                Develop strategies to redirect shots effectively.
+                Mental Toughness:
+
+                Build confidence in your backhand through mental conditioning.
+                Stay focused during pressure situations.
+                Remember to practice consistently, and consider seeking guidance from a local tennis coach for personalized feedback. Keep up the hard work, and you'll see improvements in no time!</p>
           </div>
         </div>
       </div>
@@ -107,26 +130,27 @@ function App() {
               {/* Your big video component goes here */}
             </div>
             <div className="image-container">
-              {/* First Image: Player 1 heat map */}
-              <img src="path/to/first-image.jpg" alt="First Image" />
-
+              {/* First Image: Player 2 heat map */}
+              <img src={P2Heatmap} className="player-heatmap" alt="p1_heatmap" />
               {/* Second Image: Player 1 heat map */}
-              <img src="path/to/second-image.jpg" alt="Second Image" />
+              <img src={P1Heatmap} className="player-heatmap" alt="p2_heatmap" />
             </div>
           </div>
 
           {/* Text Columns Section */}
           <div className="text-columns">
-            <div className="column">Serve Speed Goes Here</div>
-            <div className="column">Landing Spot graph goes here (it's green/red)</div>
-            <div className="column">Ball Heat Map goes here</div>
+            <div className="column">Serve Speed: 201km/h</div>
+            <div className="column">
+              <div className="col-container">
+                <img src={BallTrajectory} alt="ball_trajectory" />
+              </div>
+            </div>
+            <div className="column">
+              <div className="col-container">
+                <img src={BallHeatmap} className='ball-heatmap' alt="ball_heatmap" />
+              </div>
+            </div>
           </div>
-
-
-
-
-
-
         </div>
       </div>
 
