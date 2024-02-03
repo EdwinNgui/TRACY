@@ -182,14 +182,43 @@ body {
 /* Button Section */
 .button-container {
   display: flex;
-  justify-content: space-between;
-  padding: 1% 5%;
+  flex-direction: column;
+  width: 100%;
+  margin: auto;
 }
 
 .button-container button {
-  padding: 10px;
-  margin: 5px;
+  padding: 4px 40px; /* Adjust padding as needed */
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-right: 10px;
+  margin-left: 10px;
+  background-color: lightgray; /* Background color */
+  color: #333; /* Text color */
+  white-space: nowrap;
 }
+
+.tabs {
+  display: flex;
+  overflow-x: auto;
+}
+
+.tab {
+  padding: 10px 40px; /* Adjust padding as needed */
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 5px 5px 0 0; /* Rounded corners only at the top */
+  margin-right: 5px;
+  background-color: #f2f2f2; /* Background color */
+  color: #333; /* Text color */
+  white-space: nowrap; /* Ensure text stays on one line */
+}
+
+.tab.active {
+  background-color: #007bff;
+  color: #fff;
+} 
 
 /* Video and Images Section */
 .video-container {
@@ -200,6 +229,7 @@ body {
 
 .video {
   width: 75%;
+  vertical-align: top;
   /* Add any additional styling for the video container */
 }
 
