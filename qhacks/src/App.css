@@ -154,6 +154,8 @@ body {
   min-width: 75%; /* Set to 75% of the screen */
   margin-left: auto;
   margin-right: auto;
+  text-align: left;
+  font-size: 20px;
 }
 
 .summary-text {
@@ -255,4 +257,9 @@ body {
   height: auto; /* To maintain aspect ratio */
   border-radius: 8px; /* Adjust border-radius as needed */
   transform: scale(2.8);
+}
+
+.summary-header{
+  text-align: left;
+  font-size: 36px;
 }
