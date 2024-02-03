@@ -1,6 +1,7 @@
 import re
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy.ndimage import gaussian_filter
 
 def read_ball_data(file_path="./Data/ball1.txt"):
     with open(file_path, 'r') as file:
@@ -43,17 +44,20 @@ def create_heatmap(data, title, xlabel, ylabel, orientation='vertical', rotate_d
     # Clip values above 10 to 10
     heatmap_clipped = np.clip(heatmap_rotated, None, 10)
 
+    # Apply larger Gaussian filter for expansion and fuzziness
+    heatmap_smoothed = gaussian_filter(heatmap_clipped, sigma=2)
+
     extent = [xedges[0], xedges[-1], yedges[0], yedges[-1]]
 
     plt.clf()
     if orientation == 'horizontal':
-        plt.imshow(heatmap_clipped, extent=extent, origin='lower', cmap='viridis', interpolation='nearest', aspect=aspect_ratio, vmax=vmax)
+        plt.imshow(heatmap_smoothed, extent=extent, origin='lower', cmap='viridis', interpolation='none', aspect=aspect_ratio, vmax=vmax)
         plt.colorbar(label='Density')
         plt.title(title)
         plt.xlabel(ylabel)  # Switch xlabel and ylabel for horizontal orientation
         plt.ylabel(xlabel)
     else:
-        plt.imshow(heatmap_clipped.T, extent=extent, origin='lower', cmap='viridis', interpolation='nearest', aspect=aspect_ratio, vmax=vmax)
+        plt.imshow(heatmap_smoothed.T, extent=extent, origin='lower', cmap='viridis', interpolation='none', aspect=aspect_ratio, vmax=vmax)
         plt.colorbar(label='Density')
         plt.title(title)
         plt.xlabel(xlabel)
@@ -61,11 +65,11 @@ def create_heatmap(data, title, xlabel, ylabel, orientation='vertical', rotate_d
     plt.show()
 
 # Read ball data
-ball_data_path = r'C:\Users\edwin\Documents\GitHub\QHacks2024\qhacks\Heatmap Functions\Data\ball1.txt'
+ball_data_path = r'./heatmap_functions/Data/ball1.txt'
 ball_positions = read_ball_data(ball_data_path)
 
 # Read player data
-player_data_path = r'C:\Users\edwin\Documents\GitHub\QHacks2024\qhacks\Heatmap Functions\Data\player1.txt'
+player_data_path = r'./heatmap_functions/Data/player1.txt'
 player_positions_1, player_positions_2 = read_player_data(player_data_path)
 
 # Create and display stretched ball heatmap with vmax=20 and aspect_ratio=2.0 for horizontal stretch
