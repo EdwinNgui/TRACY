@@ -45,18 +45,12 @@ body {
 }
 
 .logo {
-  background-color: white;
-  border-radius: 10px;
-  padding: 5px;
+  width: auto;
+  height: 60px;
 }
 
 .title {
   margin: 0;
-}
-
-.logo {
-  height: 40px;
-  margin-left: 10px;
 }
 
 .main-content {
