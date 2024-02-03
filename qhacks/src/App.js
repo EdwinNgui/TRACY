@@ -1,82 +1,78 @@
 // src/App.js
-import React from 'react';
-import styled from 'styled-components';
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-`;
-
-const Header = styled.header`
-  background-color: #333;
-  padding: 10px;
-  color: white;
-  text-align: left;
-`;
-
-const Title = styled.h1`
-  margin: 0;
-`;
-
-const MainContent = styled.div`
-  flex: 1;
-  padding: 10%;
-  text-align: left;
-`;
-
-const SmallText = styled.p`
-  font-size: 40px;
-  color: #e6c910;
-  margin: 5px 0;
-`;
-
-const MassiveText = styled.p`
-  font-size: 140px;
-  font-weight: bold;
-  color: black;
-  margin: 20px 0;
-`;
-
-const DescriptionText = styled.p`
-  font-size: 36px;
-  color: black;
-  margin-bottom: 40px;
-`;
-
-const VideoInputSection = styled.div`
-  text-align: center;
-`;
+import React, { useState } from 'react';
+import Logo from './Resources/TennisLogo.png';
+import './App.css';
 
 function App() {
+  const [summaryPoints, setSummaryPoints] = useState([]);
+
+  const handleFileUpload = async (event) => {
+    const videoFile = event.target.files[0];
+
+    const formData = new FormData();
+    formData.append('file', videoFile);
+
+    try {
+      const response = await fetch('/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        const summary = await response.json();
+        setSummaryPoints(summary.points);
+      } else {
+        console.error('Failed to upload video');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
   return (
-    <Container>
+    <div className="container">
 
       {/* Landing Page */}
-      <Header>
-        <Title>TENNIS ANALYZER</Title>
-      </Header>
-      <MainContent>
-        <SmallText>BECOME A CHAMPION TODAY.</SmallText>
-        <MassiveText>
-          TENNIS GAMES ANALYZER
-        </MassiveText>
-        <DescriptionText>
-          Never lose another match to the same mistakes again. 
-        </DescriptionText>
-      </MainContent>
+      <header className="header">
+        <h1 className="title">TENNIS ANALYZER</h1>
+        <img className="logo" src={Logo} alt="Logo" />
+      </header>
+      
+      <div className="main-content">
+        <p className="small-text">BECOME A CHAMPION TODAY.</p>
+        <p className="massive-text">TENNIS GAMES ANALYZER</p>
+        <p className="description-text">Never lose another match to the same mistakes again.</p>
+      </div>
 
       {/* Space */}
       <div style={{ marginBottom: '50px' }} />
 
       {/* Video Input Section */}
-      <VideoInputSection>
-        <h2>Upload Your Tennis Game Video (MP4)</h2>
-        <input type="file" accept="video/mp4" />
-        <p>Upload your tennis game video to start the analysis.</p>
-      </VideoInputSection>
+      <div className="video-input-section">
+        <h2 className="Upload-header">Upload Your Tennis Game Video (MP4)</h2>
+        <label className="file-input-label">
+          <input type="file" accept="video/mp4" className="file-input" onChange={handleFileUpload} />
+          <span className="Upload-buttontext">Choose File</span>
+        </label>
+        <p className="Upload-desc">Start Your Premium AI Analysis to Improve Your Matches Today</p>
+      </div>
 
-    </Container>
+      {/* Space */}
+      <div style={{ marginBottom: '50px' }} />
+
+      {/* Your Summary Section */}
+      <div className="summary-section">
+        <h2>Your Summary</h2>
+        <div className="summary-box">
+          <ul>
+            {summaryPoints.map((point, index) => (
+              <li key={index}>{point}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+    </div>
   );
 }
 
