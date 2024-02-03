@@ -3,8 +3,12 @@ import './App.css';
 import { fetchData } from './ChatComponent';
 
 // Resources
-import Logo from './Resources/TennisLogo.png';
+import Logo from './Resources/tracylogo.png';
 import DemoVideo from "./Resources/sampledemodim.mp4";
+import BallHeatmap from "./Resources/DataVisualized/ball_heatmap.png";
+import BallTrajectory from "./Resources/DataVisualized/ball_trajectory.png";
+import P1Heatmap from "./Resources/DataVisualized/p1_heatmap.png";
+import P2Heatmap from "./Resources/DataVisualized/p2_heatmap.png";
 
 function App() {
   const [summaryPoints, setSummaryPoints] = useState([]);
@@ -41,7 +45,6 @@ function App() {
 
       {/* Landing Page */}
       <header className="header">
-        <h1 className="title">TENNIS ANALYZER</h1>
         <img className="logo" src={Logo} alt="Logo" />
       </header>
       
@@ -87,15 +90,74 @@ function App() {
         <div className="summary-section">
           <h2>Your Summary</h2>
           <div className="summary-box">
-            <ul>
-              {summaryPoints.map((point, index) => (
-                <li key={index}>{point}</li>
-              ))}
-            </ul>
+            <p>Bot (Tennis Coach): "Impressive serve speed! To address the challenges with your backhand, let's focus on a few key areas:
+
+                Backhand Technique:
+
+                Ensure a proper grip on the racket.
+                Work on a consistent and controlled swing motion.
+                Practice using your legs to generate power and stability.
+                Footwork:
+
+                Improve your lateral movement to cover the court efficiently.
+                Focus on positioning yourself early for backhand shots.
+                Drills and Exercises:
+
+                Incorporate drills specifically targeting your backhand.
+                Work on both defensive and offensive scenarios to build versatility.
+                Match Strategy:
+
+                Identify patterns in opponents' shots to anticipate backhand challenges.
+                Develop strategies to redirect shots effectively.
+                Mental Toughness:
+
+                Build confidence in your backhand through mental conditioning.
+                Stay focused during pressure situations.
+                Remember to practice consistently, and consider seeking guidance from a local tennis coach for personalized feedback. Keep up the hard work, and you'll see improvements in no time!</p>
           </div>
         </div>
       </div>
-      <script type="module" src="ChatComponent.js"></script>
+
+      {/* Visualized Data Section */}
+      <div className="background-green">
+        <div className='data-container'>
+
+        {/* Button Section */}
+        <div className="button-container">
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((number) => (
+              <button key={number}>{number}</button>
+            ))}
+          </div>
+
+          {/* Video and Images Section */}
+          <div className="video-container">
+            <div className="video">
+              {/* Your big video component goes here */}
+            </div>
+            <div className="image-container">
+              {/* First Image: Player 2 heat map */}
+              <img src={P2Heatmap} className="player-heatmap" alt="p1_heatmap" />
+              {/* Second Image: Player 1 heat map */}
+              <img src={P1Heatmap} className="player-heatmap" alt="p2_heatmap" />
+            </div>
+          </div>
+
+          {/* Text Columns Section */}
+          <div className="text-columns">
+            <div className="column">Serve Speed: 201km/h</div>
+            <div className="column">
+              <div className="col-container">
+                <img src={BallTrajectory} alt="ball_trajectory" />
+              </div>
+            </div>
+            <div className="column">
+              <div className="col-container">
+                <img src={BallHeatmap} className='ball-heatmap' alt="ball_heatmap" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
     </div>
   );
