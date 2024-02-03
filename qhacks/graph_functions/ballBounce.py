@@ -20,7 +20,7 @@ def detect_bounces(ball_positions):
     # Calculate the differences in y-coordinate
     dy = np.diff(ball_positions[:, 1])
 
-    # Detect bounces based on sign change in y-coordinate difference
+    # Detect bounces based on the sign change in y-coordinate difference
     bounce_indices = np.where(np.diff(np.sign(dy)) != 0)[0] + 1  # Adding 1 to align with original indices
 
     return bounce_indices
@@ -81,12 +81,12 @@ def plot_bounce_grid(ball_positions, bounce_indices):
     plt.ylabel('Y-axis')
     plt.legend()
 
-    # Plot the 3x3 grid for top half with percentages
+    # Plot the 3x3 grid for the top half with percentages
     for i in range(3):
         for j in range(3):
             plt.subplot(grid_spec_top[1, i * 3 + j])
-            x_range = np.linspace(np.min(top_half[:, 0]), np.max(top_half[:, 0]), 4)
-            y_range = np.linspace(np.min(top_half[:, 1]), np.max(top_half[:, 1]), 4)
+            x_range = np.linspace(np.percentile(top_half[:, 0], i * 33.33), np.percentile(top_half[:, 0], (i + 1) * 33.33), 4)
+            y_range = np.linspace(np.percentile(top_half[:, 1], j * 50), np.percentile(top_half[:, 1], (j + 1) * 50), 4)
             plt.hist2d(top_half[:, 0], top_half[:, 1], bins=[x_range, y_range], cmin=1, cmap='Reds', cmax=len(top_half) // 9)
             plt.title(f'Grid Section {i * 3 + j + 1}')
             plt.colorbar(label='Bounce Count')
@@ -112,12 +112,12 @@ def plot_bounce_grid(ball_positions, bounce_indices):
     plt.ylabel('Y-axis')
     plt.legend()
 
-    # Plot the 3x3 grid for bottom half with percentages
+    # Plot the 3x3 grid for the bottom half with percentages
     for i in range(3):
         for j in range(3):
             plt.subplot(grid_spec_bottom[0, i * 3 + j])
-            x_range = np.linspace(np.min(bottom_half[:, 0]), np.max(bottom_half[:, 0]), 4)
-            y_range = np.linspace(np.min(bottom_half[:, 1]), np.max(bottom_half[:, 1]), 4)
+            x_range = np.linspace(np.percentile(bottom_half[:, 0], i * 33.33), np.percentile(bottom_half[:, 0], (i + 1) * 33.33), 4)
+            y_range = np.linspace(np.percentile(bottom_half[:, 1], j * 50), np.percentile(bottom_half[:, 1], (j + 1) * 50), 4)
             plt.hist2d(bottom_half[:, 0], bottom_half[:, 1], bins=[x_range, y_range], cmin=1, cmap='Reds', cmax=len(bottom_half) // 9)
             plt.title(f'Grid Section {i * 3 + j + 1}')
             plt.colorbar(label='Bounce Count')
