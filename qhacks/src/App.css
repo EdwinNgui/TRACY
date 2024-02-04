@@ -291,9 +291,10 @@ body {
 }
 
 .video {
-  width: 75%;
+  width: 100%;
+  height: 100%; /* Make sure the video takes up 100% of the container's height */
+  object-fit: cover; /* Maintain aspect ratio without cropping */
   vertical-align: top;
-  /* Add any additional styling for the video container */
 }
 
 .image-container {
@@ -388,7 +389,7 @@ body {
 
 .summary-button:hover {
   transform: translateY(-5px); /* Adjust the value based on how much you want it to move up */
-  background-color: #41db09; /* Change button background color on hover */
+  background-color: #21bb26; /* Change button background color on hover */
   border: none; /* Remove the outline */
   border-radius: 5px; /* Add border-radius on hover */
 }
@@ -419,7 +420,7 @@ body {
 
 .swap:hover {
   transform: translateY(-5px); /* Adjust the value based on how much you want it to move up */
-  background-color: #3dc70b; /* Change button background color on hover */
+  background-color: #21bb26; /* Change button background color on hover */
 }
 
 .swap span {

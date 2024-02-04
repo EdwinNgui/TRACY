@@ -1,9 +1,14 @@
-/* ScrollButton.css */
 .scroll-button {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background-color: #3498db;
+  background-color: #3498db; /* Blue color by default */
   color: #ffffff;
   font-size: 24px;
+  transition: background-color 0.3s ease, transform 0.1s ease; /* Add transition for smoother effect */
+}
+
+.scroll-button:hover {
+  background-color: #4caf50; /* Green color on hover */
+  transform: translateY(-3px); /* Adjust the value based on how much you want it to jump up */
 }
