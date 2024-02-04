@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import './App.css';
 import axios from 'axios';
 
@@ -9,12 +9,53 @@ import BallHeatmap from "./Resources/DataVisualized/ball_heatmap.png";
 import BallTrajectory from "./Resources/DataVisualized/ball_trajectory.png";
 import P1Heatmap from "./Resources/DataVisualized/p1_heatmap.png";
 import P2Heatmap from "./Resources/DataVisualized/p2_heatmap.png";
+const Tab = ({ label, onClick, isActive }) => {
+  return (
+    <div
+      className={`tab ${isActive ? 'active' : ''}`}
+      onClick={onClick}
+    >
+      {label}
+    </div>
+  );
+};
+
+const Tabs = ({ tabs, activeTab, onTabClick,containerRef }) => {
+  return (
+    <div className="tabs"ref={containerRef}>
+      {tabs.map((tab, index) => (
+        <Tab
+          key={index}
+          label={`Shot ${index + 1}`}
+          onClick={() => onTabClick(index)}
+          isActive={index === activeTab}
+        />
+      ))}
+    </div>
+  );
+};
 
 function App() {
   const [summaryPoints, setSummaryPoints] = useState([]);
   const [videoPreview, setVideoPreview] = useState(null);
   const [uploadStatus, setUploadStatus] = useState('');
   const [text, setText] = useState('');
+
+  const [activeTab, setActiveTab] = useState(0);
+  const containerRef = useRef(null);
+  const numberOfTabs = 14; // Set your configurable number of tabs here
+
+  const handleTabClick = (index) => {
+    setActiveTab(index);
+  };
+
+  const scrollTabs = (direction) => {
+    const container = containerRef.current;
+    if (container) {
+      const scrollAmount = direction === 'left' ? -200 : 200;
+      container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
 
   const handleFileUpload = async (event) => {
     const videoFile = event.target.files[0];
@@ -130,15 +171,24 @@ function App() {
 
         {/* Button Section */}
         <div className="button-container">
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((number) => (
-              <button key={number}>{number}</button>
-            ))}
+        <div className="tabs">
+        <button onClick={() => scrollTabs('left')}>←</button>
+        <Tabs
+          tabs={new Array(numberOfTabs).fill(null)}
+          activeTab={activeTab}
+          onTabClick={handleTabClick}
+          containerRef={containerRef}
+        />
+        <button onClick={() => scrollTabs('right')}>→</button>
+      </div>
           </div>
 
           {/* Video and Images Section */}
           <div className="video-container">
             <div className="video">
-              {/* Your big video component goes here */}
+            <video width="640" controls>
+              <source src={"/out/out0/grah.mp4"} type="video/mp4" />
+            </video>
             </div>
             <div className="image-container">
               {/* First Image: Player 2 heat map */}
