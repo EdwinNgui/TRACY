@@ -127,20 +127,23 @@ function App() {
           {uploadStatus && <p className="Upload-status">{uploadStatus}</p>}
 
           {videoPreview && (
-            <div className='video-dimensions'>
-              <video width="640" height="480" controls>
-                <source src={videoPreview} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            </div>
+              <div className='video-dimensions'>
+                <video width="640" height="480" controls>
+                  <source src={videoPreview} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
           )}
         </div>
 
         {/* Space */}
         <div style={{ marginBottom: '50px' }} />
 
-        {/* Your Summary Section */}
-        <div className="summary-section">
+        {/* Data components revealed when loading complete */}
+        {uploadStatus && (
+          <div>
+            {/* Your Summary Section */}
+            <div className="summary-section">
           <h2 className='summary-header'>Your AI-Powered Summary</h2>
           <div className="summary-box">
             <p><strong>Tracy your Tennis Coach</strong>: "Impressive serve speed! To address the challenges with your backhand, let's focus on a few key areas:<br/><br/>
@@ -168,10 +171,9 @@ function App() {
                 Stay focused during pressure situations.<br/><br/>
                 Remember to practice consistently, and consider seeking guidance from a local tennis coach for personalized feedback. Keep up the hard work, and you'll see improvements in no time!</p>
           </div>
-        </div>
-      </div>
+            </div>
 
-      {/* Visualized Data Section */}
+            {/* Visualized Data Section */}
       <div className="background-green">
         <div className='data-container'>
 
@@ -221,6 +223,9 @@ function App() {
         </div>
       </div>
 
+          </div>
+        )}
+      </div>
     </div>
   );
 }
