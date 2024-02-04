@@ -121,6 +121,22 @@ body {
   margin-top: -50px;
 }
 
+.video-dimensions video{
+  border-radius: 40px;
+  overflow: hidden;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.video video{
+  border-radius: 40px;
+  overflow: hidden;
+  object-fit: cover;
+  height: 80%;
+  width: 80%;
+}
+
 .Upload-header {
   color: black;
   font-size: 24px;
