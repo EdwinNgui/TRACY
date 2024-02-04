@@ -93,11 +93,23 @@ body {
 .video-input-section {
   text-align: center;
   padding: 5%;
-  background-color: #f2f5f3;
+  background-color: #f2f5f3; /* Background color for the top */
   color: white;
   border-radius: 30px;
   margin: 5% auto;
   max-width: 60%;
+  position: relative;
+}
+
+.video-input-section::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30px; /* Adjust the height of the navy blue bottom */
+  background-color: #001f3f; /* Navy blue color */
+  border-radius: 0 0 30px 30px; /* Border radius for the bottom corners */
 }
 
 .file-input {
@@ -163,10 +175,23 @@ body {
   color: black;
   border-radius: 30px;
   margin: 0% auto;
-  min-width: 50%; /* Set to 75% of the screen */
+  min-width: 50%;
   max-width: 70%;
   padding-right: 100px;
+  position: relative;
 }
+
+.summary-section::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30px; /* Adjust the height of the navy blue bottom */
+  background-color: #001f3f; /* Navy blue color */
+  border-radius: 0 0 30px 30px; /* Border radius for the bottom corners */
+}
+
 
 .summary-box {
   background-color: white;
@@ -193,16 +218,29 @@ body {
 
 
 /* Data Visualization Sections */
-.data-container{
+.data-container {
   text-align: center;
   padding: 5%;
   background-color: #f2f5f3;
   color: black;
   border-radius: 30px;
   margin: 5% auto;
-  min-width: 50%; /* Set to 75% of the screen */
+  min-width: 50%;
   max-width: 70%;
+  position: relative;
 }
+
+.data-container::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30px; /* Adjust the height of the navy blue bottom */
+  background-color: #001f3f; /* Navy blue color */
+  border-radius: 0 0 30px 30px; /* Border radius for the bottom corners */
+}
+
 
 /* Button Section */
 .button-container {
@@ -333,7 +371,7 @@ body {
   text-align: left;
 }
 
-.summary-button{
+.summary-button {
   justify-content: right;
   background-color: #4caf50;
   border: none;
@@ -345,7 +383,16 @@ body {
   padding: 10px 20px;
   border-radius: 5px;
   margin-top: 10px;
+  transition: transform 0.3s ease, background-color 0.3s ease; /* Add transition for smoother effect */
 }
+
+.summary-button:hover {
+  transform: translateY(-5px); /* Adjust the value based on how much you want it to move up */
+  background-color: #41db09; /* Change button background color on hover */
+  border: none; /* Remove the outline */
+  border-radius: 5px; /* Add border-radius on hover */
+}
+
 
 .headings {
   display: flex;
@@ -355,18 +402,37 @@ body {
   align-items: top;
 }
 
-.swap{
-  background-color: #4caf50;
-  border: none;
-  color: white;
-  text-align: center;
-  text-decoration: none;
+.swap {
+  position: relative;
   display: inline-block;
+  text-align: center;
   font-size: 20px;
   padding: 10px 20px;
-  border-radius: 5px;
+  background-color: #4caf50;
+  color: white;
   margin-top: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease, background-color 0.3s ease; /* Add transition for smoother effect */
+  border: none; /* Remove the outline */
+  border-radius: 5px; /* Add border-radius */
 }
+
+.swap:hover {
+  transform: translateY(-5px); /* Adjust the value based on how much you want it to move up */
+  background-color: #3dc70b; /* Change button background color on hover */
+}
+
+.swap span {
+  display: inline-block;
+  color: white;
+  background-color: #4caf50;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+
+
 
 .flex-container {
   display: flex;
