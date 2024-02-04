@@ -63,12 +63,12 @@ body {
   flex: 1;
   padding: 10%;
   text-align: left;
-  background: linear-gradient(to bottom, rgba(242, 245, 243, 0) 75%, #4caf50 95%);
+  background: linear-gradient(to bottom, rgba(242, 245, 243, 0) 75%, #5eab46 95%);
   padding-bottom: 20%;
 }
 
 .background-green{
-  background: #4caf50;
+  background: #5eab46;
 }
 
 .small-text {
@@ -374,7 +374,19 @@ body {
 
 .summary-button {
   justify-content: right;
-  background-color: #4caf50;
+  background-color: #5EAB46;
+}
+
+.headings {
+  display: flex;
+  font-size: 20px;
+  font-weight: 400;
+  justify-content: center;
+  align-items: top;
+}
+
+.swap{
+  background-color: #5eab46;
   border: none;
   color: white;
   text-align: center;
@@ -409,7 +421,7 @@ body {
   text-align: center;
   font-size: 20px;
   padding: 10px 20px;
-  background-color: #4caf50;
+  background-color: #5EAB46;
   color: white;
   margin-top: 10px;
   overflow: hidden;
@@ -426,7 +438,7 @@ body {
 .swap span {
   display: inline-block;
   color: white;
-  background-color: #4caf50;
+  background-color: #5EAB46;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;

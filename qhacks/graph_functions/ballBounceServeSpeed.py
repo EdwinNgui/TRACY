@@ -192,24 +192,25 @@ def getData(ball_data_path):
     # IF YOU WANT TO PLOT THE TRAJECTORIES
     plot_ball_trajectory(ball_positions, bounce_indices, serve_indices, aspect_ratio=0.6, flip_y=True)
 
-    print(p1_freq[0], p1_freq[1], p1_freq[2])
-    print(p2_freq[0], p2_freq[1], p2_freq[2])
+    # print(serve_speed)
+    # print(p1_freq[0], p1_freq[1], p1_freq[2])
+    # print(p2_freq[0], p2_freq[1], p2_freq[2])
 
     return serve_speed, p1_freq, p2_freq
 
 
 if __name__ == '__main__':
-    getData('./public/out/out0/ball.txt')
-    getData('./public/out/out1/ball.txt')
-    getData('./public/out/out2/ball.txt')
-    getData('./public/out/out3/ball.txt')
-    getData('./public/out/out4/ball.txt')
-    getData('./public/out/out5/ball.txt')
-    getData('./public/out/out6/ball.txt')
-    getData('./public/out/out7/ball.txt')
-    getData('./public/out/out8/ball.txt')
-    getData('./public/out/out9/ball.txt')
-    getData('./public/out/out10/ball.txt')
-    getData('./public/out/out11/ball.txt')
-    getData('./public/out/out12/ball.txt')
-    getData('./public/out/out13/ball.txt')
+    print(getData('./public/out/out0/ball.txt'))
+    # getData('./public/out/out1/ball.txt')
+    # getData('./public/out/out2/ball.txt')
+    # getData('./public/out/out3/ball.txt')
+    # getData('./public/out/out4/ball.txt')
+    # getData('./public/out/out5/ball.txt')
+    # getData('./public/out/out6/ball.txt')
+    # getData('./public/out/out7/ball.txt')
+    # getData('./public/out/out8/ball.txt')
+    # getData('./public/out/out9/ball.txt')
+    # getData('./public/out/out10/ball.txt')
+    # getData('./public/out/out11/ball.txt')
+    # getData('./public/out/out12/ball.txt')
+    # getData('./public/out/out13/ball.txt')
