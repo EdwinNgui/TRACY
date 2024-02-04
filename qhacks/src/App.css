@@ -293,3 +293,23 @@ body {
   text-align: left;
   font-size: 36px;
 }
+
+.headings {
+  display: flex;
+  font-size: 20px;
+  font-weight: 400;
+  justify-content: center;
+}
+
+.headings button{
+  padding: 5px 20px; /* Adjust padding as needed */
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-right: 10px;
+  margin-left: 10px;
+  background-color: lightgray; /* Background color */
+  color: #333; /* Text color */
+  white-space: nowrap;
+  line-height: 1;
+}

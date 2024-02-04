@@ -9,6 +9,7 @@ import BallHeatmap from "./Resources/DataVisualized/ball_heatmap.png";
 import BallTrajectory from "./Resources/DataVisualized/ball_trajectory.png";
 import P1Heatmap from "./Resources/DataVisualized/p1_heatmap.png";
 import P2Heatmap from "./Resources/DataVisualized/p2_heatmap.png";
+
 const Tab = ({ label, onClick, isActive }) => {
   return (
     <div
@@ -40,11 +41,16 @@ function App() {
   const [videoPreview, setVideoPreview] = useState(null);
   const [uploadStatus, setUploadStatus] = useState('');
   const [text, setText] = useState('');
+  const [activeHeatmap, setActiveHeatmap] = useState(0);
 
   const [activeTab, setActiveTab] = useState(0);
   const containerRef = useRef(null);
   const numberOfTabs = 14; // Set your configurable number of tabs here
 
+  const swapHeatmaps = () => {
+    setActiveHeatmap((prev) => (prev === 0 ? 1 : 0));
+  };
+  
   const handleTabClick = (index) => {
     setActiveTab(index);
   };
@@ -186,32 +192,32 @@ function App() {
           {/* Video and Images Section */}
           <div className="video-container">
             <div className="video">
-            <video width="640" controls>
-              <source src={"/out/out0/grah.mp4"} type="video/mp4" />
+            <p className="headings">Video</p>
+            <video key={activeTab} width="640" autoPlay controls>
+            <source src={`/out/out${activeTab}/video.mp4`} type="video/mp4" />
             </video>
             </div>
+
             <div className="image-container">
-              {/* First Image: Player 2 heat map */}
+            <div className="headings">
+            <p>Global heatmaps</p>
+            {/* Button to swap heatmaps */}
+            <button class="button" onClick={swapHeatmaps}>Swap!</button>
+            </div>
+            {activeHeatmap === 0 ? (
+              <div>
               <img src={P2Heatmap} className="player-heatmap" alt="p1_heatmap" />
-              {/* Second Image: Player 1 heat map */}
               <img src={P1Heatmap} className="player-heatmap" alt="p2_heatmap" />
+              </div>
+            ) : (
+              <div>
+              <img src={BallHeatmap} className="player-heatmap" alt="p1_heatmap" />
+              <img src={BallTrajectory} className="player-heatmap" alt="p2_heatmap" />
+              </div>
+            )}
             </div>
           </div>
 
-          {/* Text Columns Section */}
-          <div className="text-columns">
-            <div className="column">Serve Speed: 201km/h</div>
-            <div className="column">
-              <div className="col-container">
-                <img src={BallTrajectory} alt="ball_trajectory" />
-              </div>
-            </div>
-            <div className="column">
-              <div className="col-container">
-                <img src={BallHeatmap} className='ball-heatmap' alt="ball_heatmap" />
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
