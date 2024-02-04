@@ -4,7 +4,7 @@ import axios from 'axios';
 
 // Resources
 import Logo from './Resources/tracylogo.png';
-import DemoVideo from "./Resources/sampledemodim.mp4";
+import DemoVideo from "./Resources/sampledim.mp4";
 import BallHeatmap from "./Resources/DataVisualized/ball_heatmap.png";
 import BallTrajectory from "./Resources/DataVisualized/ball_trajectory.png";
 import P1Heatmap from "./Resources/DataVisualized/p1_heatmap.png";
@@ -150,30 +150,30 @@ function App() {
             <div className="summary-section">
           <h2 className='summary-header'>Your AI-Powered Summary</h2>
           <div className="summary-box">
-            <p><strong>Tracy your Tennis Coach</strong>: "Impressive serve speed! To address the challenges with your backhand, let's focus on a few key areas:<br/><br/>
+            <p>Let's tackle this one step at a time.<br/><br/>
 
-                <strong>Backhand Technique:</strong><br/>
+<strong>Firstly</strong>, well done on cleverly steering clear of placing balls in the middle of the court. Your shot placement statistics show a good distribution with <strong>37.54%</strong> on the opponent's left court, <strong>24.57%</strong> in the middle and <strong>37.88%</strong> on the right court. A good strategy, giving your opponent a tough time predicting your shots.
 
-                Ensure a proper grip on the racket.<br/>
-                Work on a consistent and controlled swing motion.<br/>
-                Practice using your legs to generate power and stability.<br/><br/>
-                <strong>Footwork:</strong><br/>
+Your opponent's shot distribution, however, suggests the majority of their shots are coming either to the middle or right side of your court. <br/><br/>Investing some time to ensure your fitness and footwork supports quick recovery in these areas could prove invaluable.<br/>
 
-                Improve your lateral movement to cover the court efficiently.<br/>
-                Focus on positioning yourself early for backhand shots.<br/><br/>
-                <strong>Drills and Exercises:</strong><br/>
+Your forehand and backhand both show potential. Right now, I need to see more balls on your backhand to give you a fair assessment. Challenge yourself to return more shots with your backhand during practice.<br/><br/>
 
-                Incorporate drills specifically targeting your backhand.<br/>
-                Work on both defensive and offensive scenarios to build versatility.<br/><br/>
-                <strong>Match Strategy:</strong><br/>
+Your serve data presents an invaluable opportunity for improvement. Your first serve speed of <strong>201.03 km/h</strong> is great. As for your second serve, it averages at <strong>136.81 km/h</strong>, which is below the men's average, and it's a slice serve. Working on generating more spin while maintaining or improving the service speed could give your second serve that magic touch.<br/>
 
-                Identify patterns in opponents' shots to anticipate backhand challenges.<br/>
-                Develop strategies to redirect shots effectively.<br/><br/>
-                <strong>Mental Toughness:</strong><br/>
+Now, let's look at this ball trajectory plot in the rally with a top-down view. The plot reveals that you're making good use of the court space. Remember to capitalize on the depth of the court. Pushing your opponent backward will create opportunities in the court for your following shots.<br/><br/>
 
-                Build confidence in your backhand through mental conditioning.<br/>
-                Stay focused during pressure situations.<br/><br/>
-                Remember to practice consistently, and consider seeking guidance from a local tennis coach for personalized feedback. Keep up the hard work, and you'll see improvements in no time!</p>
+<strong>Recommendations include:</strong><br/>
+
+1. Practice sessions to enhance your backhand. Add some drills to put you in challenging positions in both the left and middle areas of the court.<br/>
+
+2. Work on your footwork agility and speed to quickly recover for shots placed in the middle and to your right.<br/>
+
+3. Implement ‘serve plus one’ drills. Begin every point with a designated serve followed by a particular shot.<br/>
+
+4. Increase your second serve speed. Incorporate physical regimens in your workouts to improve your upper body and core strength.<br/><br/>
+
+Keep these points in mind, and remember without persistence, your greatest strengths can become dormant. Keep practicing and push boundaries, and soon, we'll have you completely owning that court like a pro!
+</p>
           </div>
             </div>
 

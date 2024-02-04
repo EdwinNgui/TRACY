@@ -136,13 +136,14 @@ body {
 /* Your Summary Section Styles */
 .summary-section {
   text-align: center;
-  padding: 5%;
+  padding: 4%;
   background-color: #f2f5f3;
   color: black;
   border-radius: 30px;
   margin: 0% auto;
   min-width: 50%; /* Set to 75% of the screen */
   max-width: 70%;
+  padding-right: 100px;
 }
 
 .summary-box {
