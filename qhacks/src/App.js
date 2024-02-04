@@ -10,6 +10,9 @@ import BallTrajectory from "./Resources/DataVisualized/ball_trajectory.png";
 import P1Heatmap from "./Resources/DataVisualized/p1_heatmap.png";
 import P2Heatmap from "./Resources/DataVisualized/p2_heatmap.png";
 
+// Components
+import Loading from "./Loading"
+
 const Tab = ({ label, onClick, isActive }) => {
   return (
     <div
@@ -47,7 +50,7 @@ function App() {
   const containerRef = useRef(null);
   const numberOfTabs = 14; // Set your configurable number of tabs here
 
-  const swapHeatmaps = () => {
+const swapHeatmaps = () => {
     setActiveHeatmap((prev) => (prev === 0 ? 1 : 0));
   };
   
@@ -64,14 +67,14 @@ function App() {
   };
 
   const handleFileUpload = async (event) => {
-    const videoFile = event.target.files[0];
+          const videoFile = event.target.files[0];
 
-    // Simulating a successful upload locally
-    const videoUrl = URL.createObjectURL(videoFile);
-    setVideoPreview(videoUrl);
-    setUploadStatus('File upload successful');
+      // Simulating a successful upload locally
+      const videoUrl = URL.createObjectURL(videoFile);
+      setVideoPreview(videoUrl);
+      setUploadStatus('File upload successful');
 
-    try {
+      try {
       let payload = {'sample': 'sample'}
       const response = await axios.get('http://127.0.0.1:3000/post_text');
       const responseData = response.data; // Assuming the response is a JSON object
@@ -80,6 +83,14 @@ function App() {
       console.error('Error posting text:', error);
     }
   };
+
+  const [loading, setLoading] = useState(true)
+  useEffect(() => {
+      setTimeout(() => setLoading(false), 3300)
+  }, [])
+  if (loading) {
+      return <Loading/>
+  }
 
   return (
     <div className="container">
@@ -174,54 +185,54 @@ function App() {
             </div>
 
             {/* Visualized Data Section */}
-      <div className="background-green">
-        <div className='data-container'>
+            <div className="background-green">
+              <div className='data-container'>
 
-        {/* Button Section */}
-        <div className="button-container">
-        <div className="tabs">
-        <button onClick={() => scrollTabs('left')}>←</button>
-        <Tabs
-          tabs={new Array(numberOfTabs).fill(null)}
-          activeTab={activeTab}
-          onTabClick={handleTabClick}
-          containerRef={containerRef}
-        />
-        <button onClick={() => scrollTabs('right')}>→</button>
-      </div>
-          </div>
-
-          {/* Video and Images Section */}
-          <div className="video-container">
-            <div className="video">
-            <p className="headings">Video</p>
-            <video key={activeTab} width="640" autoPlay controls>
-            <source src={`/out/out${activeTab}/video.mp4`} type="video/mp4" />
-            </video>
+              {/* Button Section */}
+              <div className="button-container">
+              <div className="tabs">
+              <button onClick={() => scrollTabs('left')}>←</button>
+              <Tabs
+                tabs={new Array(numberOfTabs).fill(null)}
+                activeTab={activeTab}
+                onTabClick={handleTabClick}
+                containerRef={containerRef}
+              />
+              <button onClick={() => scrollTabs('right')}>→</button>
             </div>
+                </div>
 
-            <div className="image-container">
-            <div className="headings">
+                {/* Video and Images Section */}
+                <div className="video-container">
+                  <div className="video">
+                  <p className="headings">Video</p>
+            <video key={activeTab} width="640" autoPlay controls>
+                    <source src={`/out/out${activeTab}/video.mp4`} type="video/mp4" />
+                  </video>
+                  </div>
+
+                  <div className="image-container">
+                    <div className="headings">
             <p>Global heatmaps</p>
             {/* Button to swap heatmaps */}
-            <button class="button" onClick={swapHeatmaps}>Swap!</button>
+<button class="button" onClick={swapHeatmaps}>Swap!</button>
             </div>
             {activeHeatmap === 0 ? (
               <div>
-              <img src={P2Heatmap} className="player-heatmap" alt="p1_heatmap" />
-              <img src={P1Heatmap} className="player-heatmap" alt="p2_heatmap" />
-              </div>
-            ) : (
+                    <img src={P2Heatmap} className="player-heatmap" alt="p1_heatmap" />
+                                        <img src={P1Heatmap} className="player-heatmap" alt="p2_heatmap" />
+                  </div>
+                ) : (
               <div>
               <img src={BallHeatmap} className="player-heatmap" alt="p1_heatmap" />
               <img src={BallTrajectory} className="player-heatmap" alt="p2_heatmap" />
-              </div>
-            )}
-            </div>
-          </div>
+                    </div>
+)}
+                  </div>
+                </div>
 
-        </div>
-      </div>
+              </div>
+            </div>
 
           </div>
         )}
