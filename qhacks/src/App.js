@@ -10,9 +10,6 @@ import BallTrajectory from "./Resources/DataVisualized/ball_trajectory.png";
 import P1Heatmap from "./Resources/DataVisualized/p1_heatmap.png";
 import P2Heatmap from "./Resources/DataVisualized/p2_heatmap.png";
 
-// Components
-import Loading from "./Loading"
-
 const Tab = ({ label, onClick, isActive }) => {
   return (
     <div
@@ -87,14 +84,6 @@ function App() {
       console.error('Error posting text:', error);
     }
   };
-
-  const [loading, setLoading] = useState(true)
-  useEffect(() => {
-      setTimeout(() => setLoading(false), 3300)
-  }, [])
-  if (loading) {
-      return <Loading/>
-  }
 
   return (
     <div className="container">
