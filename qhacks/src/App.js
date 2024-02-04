@@ -45,6 +45,51 @@ const Tabs = ({ tabs, activeTab, onTabClick,containerRef }) => {
   );
 };
 
+const BasicComponent = () => {
+  return <div className="summary-box">
+  <p>Your shot placements:
+  <ul>
+  <li><strong>37.54%</strong> left</li>
+  <li><strong>24.57%</strong> middle</li>
+  <li><strong>37.88%</strong> right</li>
+</ul>
+</p>
+<p>Your opponent tended to hit shots to the <strong>middle</strong> and <strong>right</strong> side of the court, possibly targetting your <strong>backhand</strong>.</p>
+<p>Your first serve speed of <strong>201.03 km/h</strong> is great.</p>
+<p>From the ball trajectory map, it's clear that you know how to utilize the entire court!</p>
+<p>For a more detailed analysis and recommendations, check the advanced text output.</p>
+</div>;
+}
+
+const AdvancedComponent = () => {
+  return <div className="summary-box">
+  <p>Let's tackle this one step at a time.<br/><br/>
+
+<strong>Firstly</strong>, well done on cleverly steering clear of placing balls in the middle of the court. Your shot placement statistics show a good distribution with <strong>37.54%</strong> on the opponent's left court, <strong>24.57%</strong> in the middle and <strong>37.88%</strong> on the right court. A good strategy, giving your opponent a tough time predicting your shots.
+
+Your opponent's shot distribution, however, suggests the majority of their shots are coming either to the middle or right side of your court. <br/><br/>Investing some time to ensure your fitness and footwork supports quick recovery in these areas could prove invaluable.<br/>
+
+Your forehand and backhand both show potential. Right now, I need to see more balls on your backhand to give you a fair assessment. Challenge yourself to return more shots with your backhand during practice.<br/><br/>
+
+Your serve data presents an invaluable opportunity for improvement. Your first serve speed of <strong>201.03 km/h</strong> is great. As for your second serve, it averages at <strong>136.81 km/h</strong>, which is below the competitive men's average, and it's a slice serve. Working on generating more spin while maintaining or improving the service speed could give your second serve that magic touch.<br/>
+
+<br></br>Now, let's look at this ball trajectory plot in the rally with a top-down view. The plot reveals that you're making good use of the court space. Remember to capitalize on the depth of the court. Pushing your opponent backward will create opportunities in the court for your following shots.<br/><br/>
+
+<strong>Recommendations include:</strong><br/>
+
+1. Practice sessions to enhance your backhand. Add some drills to put you in challenging positions in both the left and middle areas of the court.<br/>
+
+2. Work on your footwork agility and speed to quickly recover for shots placed in the middle and to your right.<br/>
+
+3. Implement ‘serve plus one’ drills. Begin every point with a designated serve followed by a particular shot.<br/>
+
+4. Increase your second serve speed. Incorporate physical regimens in your workouts to improve your upper body and core strength.<br/><br/>
+
+Keep these points in mind, and remember without persistence, your greatest strengths can become dormant. Keep practicing and push boundaries, and soon, we'll have you completely owning that court like a pro!
+</p>
+</div>;
+}
+
 function App() {
   const [summaryPoints, setSummaryPoints] = useState([]);
   const [videoPreview, setVideoPreview] = useState(null);
@@ -56,6 +101,11 @@ function App() {
   const containerRef = useRef(null);
   const numberOfTabs = 14; // Set your configurable number of tabs here
   const [showGif, setShowGif] = useState(false);
+  const [isAdvancedMode, setIsAdvancedMode] = useState(false);
+
+  const toggleMode = () => {
+    setIsAdvancedMode((prevMode) => !prevMode);
+  };
 
   const handleShowGif = (value) => {
     setShowGif(value);
@@ -97,8 +147,6 @@ function App() {
     } catch (error) {
       console.error('Error posting text:', error);
     }
-
-    
   };
 
   return (
@@ -167,34 +215,13 @@ function App() {
         {uploadStatus && (
           <div>
             {/* Your Summary Section */}
-            <div className="summary-section">
-          <h2 className='summary-header'>Your AI-Powered Summary</h2>
-          <div className="summary-box">
-            <p>Let's tackle this one step at a time.<br/><br/>
-
-<strong>Firstly</strong>, well done on cleverly steering clear of placing balls in the middle of the court. Your shot placement statistics show a good distribution with <strong>37.54%</strong> on the opponent's left court, <strong>24.57%</strong> in the middle and <strong>37.88%</strong> on the right court. A good strategy, giving your opponent a tough time predicting your shots.
-
-Your opponent's shot distribution, however, suggests the majority of their shots are coming either to the middle or right side of your court. <br/><br/>Investing some time to ensure your fitness and footwork supports quick recovery in these areas could prove invaluable.<br/>
-
-Your forehand and backhand both show potential. Right now, I need to see more balls on your backhand to give you a fair assessment. Challenge yourself to return more shots with your backhand during practice.<br/><br/>
-
-Your serve data presents an invaluable opportunity for improvement. Your first serve speed of <strong>201.03 km/h</strong> is great. As for your second serve, it averages at <strong>136.81 km/h</strong>, which is below the competitive men's average, and it's a slice serve. Working on generating more spin while maintaining or improving the service speed could give your second serve that magic touch.<br/>
-
-Now, let's look at this ball trajectory plot in the rally with a top-down view. The plot reveals that you're making good use of the court space. Remember to capitalize on the depth of the court. Pushing your opponent backward will create opportunities in the court for your following shots.<br/><br/>
-
-<strong>Recommendations include:</strong><br/>
-
-1. Practice sessions to enhance your backhand. Add some drills to put you in challenging positions in both the left and middle areas of the court.<br/>
-
-2. Work on your footwork agility and speed to quickly recover for shots placed in the middle and to your right.<br/>
-
-3. Implement ‘serve plus one’ drills. Begin every point with a designated serve followed by a particular shot.<br/>
-
-4. Increase your second serve speed. Incorporate physical regimens in your workouts to improve your upper body and core strength.<br/><br/>
-
-Keep these points in mind, and remember without persistence, your greatest strengths can become dormant. Keep practicing and push boundaries, and soon, we'll have you completely owning that court like a pro!
-</p>
+            <div className="summary-section" id="summary">
+              <div className="flex-container">
+          <h2>Your AI-Powered Summary</h2>
+          <button className="summary-button" onClick={toggleMode}> {isAdvancedMode ? 'Switch to Basic' : 'Switch to Advanced'}</button>
           </div>
+          {isAdvancedMode ? <AdvancedComponent /> : <BasicComponent />}
+          <ScrollButton/>
             </div>
 
             {/* Visualized Data Section */}

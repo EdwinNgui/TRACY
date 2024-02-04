@@ -16,7 +16,7 @@ const ScrollButton = () => {
     const targetElement = document.querySelector('.video-input-section');
     if (targetElement) {
       window.scrollTo({
-        top: targetElement.offsetTop,
+        top: document.body.scrollHeight,
         behavior: 'smooth',
       });
     }

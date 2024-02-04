@@ -312,8 +312,23 @@ body {
 }
 
 .summary-header{
-  text-align: left;
   font-size: 36px;
+  justify-content: left;
+  text-align: left;
+}
+
+.summary-button{
+  justify-content: right;
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-top: 10px;
 }
 
 .headings {
@@ -335,4 +350,10 @@ body {
   padding: 10px 20px;
   border-radius: 5px;
   margin-top: 10px;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
 }

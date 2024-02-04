@@ -1,15 +1,36 @@
 // GifOverlay.js
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import logo from "./Resources/TracyGif2.gif";
 
 const GifOverlay = ({ showGif, handleShowGif }) => {
+  const [isFading, setIsFading] = useState(false);
+
   useEffect(() => {
     if (showGif) {
+      // Disable scrolling when the GIF is shown
+      document.body.style.overflow = 'hidden';
+
+      // Triggering the fade-in effect
+      setIsFading(true);
+
       const timeoutId = setTimeout(() => {
         handleShowGif(false);
+
+        // Enable scrolling when the GIF is hidden
+        document.body.style.overflow = 'auto';
+
+        // Automatically scroll to the bottom of the page
+        document.getElementsByClassName("summary-section")[0].scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
       }, 8000);
 
-      return () => clearTimeout(timeoutId);
+      return () => {
+        // Triggering the fade-out effect before hiding the GIF
+        setIsFading(false);
+        clearTimeout(timeoutId);
+      };
     }
   }, [showGif, handleShowGif]);
 
@@ -27,6 +48,8 @@ const GifOverlay = ({ showGif, handleShowGif }) => {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
+            opacity: isFading ? 1 : 0, // Apply fade effect
+            transition: 'opacity 4s ease', // CSS transition for fading
           }}
         >
           <img
