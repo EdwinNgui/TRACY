@@ -48,10 +48,10 @@ def plot_ball_trajectory(ball_positions, bounce_indices, serve_indices, aspect_r
     plt.gca().set_aspect(aspect_ratio, adjustable='box')  # Adjust aspect ratio for the plot
 
     if flip_y:
-        plt.gca().invert_yaxis()  # Flip the x-axis
+        plt.gca().invert_yaxis()  # Flip the y-axis
 
     plt.xlim(0, 1665)
-    plt.ylim(0, 3496)
+    plt.ylim(3496, 0)
 
     plt.show()
 
@@ -177,7 +177,7 @@ def getBounceFreq(ball_positions, bounce_indices):
             p1_freq[2] += 1
     return p1_freq, p2_freq
 
-def getBallBounce(ball_data_path):
+def getData(ball_data_path):
     # Read ball data
     ball_positions = read_ball_data(ball_data_path)
 
@@ -192,21 +192,23 @@ def getBallBounce(ball_data_path):
     # Plot ball trajectory with bounce points and aspect ratio of 2.0
     plot_ball_trajectory(ball_positions, bounce_indices, serve_indices, aspect_ratio=0.6, flip_y=True)
 
-    print("Serve Speed:", serve_speed)
+    # print(serve_speed)
 
     return serve_speed, p1_freq, p2_freq
 
-# # Plot the bounce grid ratios
-# plot_bounce_grid(ball_positions, bounce_indices)
-
-# # Display the frame indices where bounces occurred
-# print("Bounce Frame Indices:")
-# for index in bounce_indices:
-#     print(ball_positions[index])
-
-# # Display the frame indices where bounces occurred
-# print("Serve Frame Indices:", serve_indices)
-# print("Serve Speed:", serve_speed)
 
 if __name__ == '__main__':
-    print(getBallBounce('./graph_functions/Data/ball1.txt'))
+    print(getData('./public/out/out0/ball.txt'))
+    # getData('./public/out/out1/ball.txt')
+    # getData('./public/out/out2/ball.txt')
+    # getData('./public/out/out3/ball.txt')
+    # getData('./public/out/out4/ball.txt')
+    # getData('./public/out/out5/ball.txt')
+    # getData('./public/out/out6/ball.txt')
+    # getData('./public/out/out7/ball.txt')
+    # getData('./public/out/out8/ball.txt')
+    # getData('./public/out/out9/ball.txt')
+    # getData('./public/out/out10/ball.txt')
+    # getData('./public/out/out11/ball.txt')
+    # getData('./public/out/out12/ball.txt')
+    # getData('./public/out/out13/ball.txt')
