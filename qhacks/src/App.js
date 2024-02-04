@@ -50,8 +50,12 @@ function App() {
   const containerRef = useRef(null);
   const numberOfTabs = 14; // Set your configurable number of tabs here
 
-const swapHeatmaps = () => {
-    setActiveHeatmap((prev) => (prev === 0 ? 1 : 0));
+  const swapHeatmaps = () => {
+    setActiveHeatmap((prev) => {
+      // Cycle through 0, 1, 2
+      return (prev + 1) % 3;
+    });
+
   };
   
   const handleTabClick = (index) => {
@@ -201,7 +205,6 @@ const swapHeatmaps = () => {
               <button onClick={() => scrollTabs('right')}>→</button>
             </div>
                 </div>
-
                 {/* Video and Images Section */}
                 <div className="video-container">
                   <div className="video">
@@ -210,27 +213,25 @@ const swapHeatmaps = () => {
                     <source src={`/out/out${activeTab}/video.mp4`} type="video/mp4" />
                   </video>
                   </div>
-
-                  <div className="image-container">
-                    <div className="headings">
-            <p>Global heatmaps</p>
+            <div className="image-container">
+            <div className="headings">
             {/* Button to swap heatmaps */}
-<button class="button" onClick={swapHeatmaps}>Swap!</button>
+            <button class="swap" onClick={swapHeatmaps}>Swap!</button>
             </div>
             {activeHeatmap === 0 ? (
-              <div>
-                    <img src={P2Heatmap} className="player-heatmap" alt="p1_heatmap" />
-                                        <img src={P1Heatmap} className="player-heatmap" alt="p2_heatmap" />
-                  </div>
-                ) : (
-              <div>
-              <img src={BallHeatmap} className="player-heatmap" alt="p1_heatmap" />
-              <img src={BallTrajectory} className="player-heatmap" alt="p2_heatmap" />
-                    </div>
-)}
-                  </div>
-                </div>
-
+            <div>
+              <img src={P2Heatmap} className="player-heatmap" alt="p2_heatmap" />
+              <img src={P1Heatmap} className="player-heatmap" alt="p1_heatmap" />
+            </div>
+          ) : activeHeatmap === 1 ? (
+              <img src={BallHeatmap} className="ball-heatmap" alt="ball_heatmap" />
+          ) : (
+            <div>
+              <img src={BallTrajectory} className="ball-trajectory" alt="ball_trajectory" />
+            </div>
+          )}
+            </div>
+          </div>
               </div>
             </div>
 
