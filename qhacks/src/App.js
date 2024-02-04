@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import './App.css';
 import axios from 'axios';
+import GifOverlay from './GifOverlay';
 
 // Resources
 import Logo from './Resources/tracylogo.png';
@@ -10,6 +11,13 @@ import BallTrajectory from "./Resources/DataVisualized/ball_trajectory.png";
 import P1Heatmap from "./Resources/DataVisualized/p1_heatmap.png";
 import P2Heatmap from "./Resources/DataVisualized/p2_heatmap.png";
 import ScrollButton from './Scroll-Btn/ScrollButton';
+import speeds from './Resources/speeds.txt';
+let serveSpeed;
+fetch(speeds)
+ .then(r => r.text())
+ .then(text => {
+  serveSpeed = text;
+});
 
 const Tab = ({ label, onClick, isActive }) => {
   return (
@@ -47,6 +55,11 @@ function App() {
   const [activeTab, setActiveTab] = useState(0);
   const containerRef = useRef(null);
   const numberOfTabs = 14; // Set your configurable number of tabs here
+  const [showGif, setShowGif] = useState(false);
+
+  const handleShowGif = (value) => {
+    setShowGif(value);
+  };
 
   const swapHeatmaps = () => {
     setActiveHeatmap((prev) => {
@@ -70,7 +83,7 @@ function App() {
 
   const handleFileUpload = async (event) => {
           const videoFile = event.target.files[0];
-
+          handleShowGif(true)
       // Simulating a successful upload locally
       const videoUrl = URL.createObjectURL(videoFile);
       setVideoPreview(videoUrl);
@@ -84,6 +97,8 @@ function App() {
     } catch (error) {
       console.error('Error posting text:', error);
     }
+
+    
   };
 
   return (
@@ -122,6 +137,7 @@ function App() {
       
         {/* Video Input Section */}
         <div className="video-input-section">
+        <GifOverlay showGif={showGif} handleShowGif={handleShowGif} />
           <h2 className="Upload-header">Upload Your Tennis Game Video (MP4)</h2>
           <label className="file-input-label">
             <input type="file" accept="video/mp4" className="file-input" onChange={handleFileUpload} />
@@ -205,6 +221,7 @@ Keep these points in mind, and remember without persistence, your greatest stren
             <video key={activeTab} width="640" autoPlay controls>
                     <source src={`/out/out${activeTab}/video.mp4`} type="video/mp4" />
                   </video>
+                  <p className="headings">{`🎾 Serve Speed: ${parseFloat(serveSpeed.split("\n")[activeTab]).toFixed(2)} km/h`}</p>
                   </div>
             <div className="image-container">
             <div className="headings">
