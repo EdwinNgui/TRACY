@@ -159,12 +159,32 @@ def get_serve_speed(ball_positions, serve_indices):
             kmh = (metre_dist / (1/30)) * 4
             return kmh, (start, end)
 
+def getBounceFreq(ball_positions, bounce_indices):
+    p1_freq = [0, 0, 0]
+    p2_freq = [0, 0, 0]
+    for index in bounce_indices:
+        if (ball_positions[index][1] < 1748) and (ball_positions[index][0] >= 286 and ball_positions[index][0] < 286 + (1093/3)):
+            p2_freq[0] += 1
+        elif (ball_positions[index][1] < 1748) and (ball_positions[index][0] >= 286 + (1093/3) and ball_positions[index][0] < 286 + (2 * (1093/3))):
+            p2_freq[1] += 1
+        elif (ball_positions[index][1] < 1748) and (ball_positions[index][0] >= 286 + (2 * (1093/3)) and ball_positions[index][0] < 1379):
+            p2_freq[2] += 1
+        elif (ball_positions[index][1] >= 1748) and (ball_positions[index][0] >= 286 and ball_positions[index][0] < 286 + (1093/3)):
+            p1_freq[0] += 1
+        elif (ball_positions[index][1] >= 1748) and (ball_positions[index][0] >= 286 + (1093/3) and ball_positions[index][0] < 286 + (2 * (1093/3))):
+            p1_freq[1] += 1
+        elif (ball_positions[index][1] >= 1748) and (ball_positions[index][0] >= 286 + (2 * (1093/3)) and ball_positions[index][0] < 1379):
+            p1_freq[2] += 1
+    return p1_freq, p2_freq
+
 def getBallBounce(ball_data_path):
     # Read ball data
     ball_positions = read_ball_data(ball_data_path)
 
     # Detect bounces
     bounce_indices = detect_bounces(ball_positions)
+
+    (p1_freq, p2_freq) = getBounceFreq(ball_positions, bounce_indices)
 
     serve_indices = get_serve_indices(ball_positions, bounce_indices)
     serve_speed, speed_indices = get_serve_speed(ball_positions, serve_indices)
@@ -174,7 +194,7 @@ def getBallBounce(ball_data_path):
 
     print("Serve Speed:", serve_speed)
 
-    return serve_speed
+    return serve_speed, p1_freq, p2_freq
 
 # # Plot the bounce grid ratios
 # plot_bounce_grid(ball_positions, bounce_indices)
