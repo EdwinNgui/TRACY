@@ -49,6 +49,12 @@ body {
   height: 60px;
 }
 
+.scroll-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .title {
   margin: 0;
 }

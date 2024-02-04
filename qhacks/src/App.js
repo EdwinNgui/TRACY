@@ -9,6 +9,7 @@ import BallHeatmap from "./Resources/DataVisualized/ball_heatmap.png";
 import BallTrajectory from "./Resources/DataVisualized/ball_trajectory.png";
 import P1Heatmap from "./Resources/DataVisualized/p1_heatmap.png";
 import P2Heatmap from "./Resources/DataVisualized/p2_heatmap.png";
+import ScrollButton from './Scroll-Btn/ScrollButton';
 
 const Tab = ({ label, onClick, isActive }) => {
   return (
@@ -107,8 +108,11 @@ function App() {
       
       <div className="main-content">
         <p className="small-text">BECOME A CHAMPION TODAY.</p>
-        <p className="massive-text">TENNIS GAMES ANALYZER</p>
+        <p className="massive-text">TENNIS GAME ANALYZER</p>
         <p className="description-text">Never lose another match to the same mistakes again.</p>
+        <div className='scroll-btn'>
+          <ScrollButton/>
+        </div>
       </div>
 
       {/* Bottom Section */}
@@ -158,7 +162,7 @@ Your opponent's shot distribution, however, suggests the majority of their shots
 
 Your forehand and backhand both show potential. Right now, I need to see more balls on your backhand to give you a fair assessment. Challenge yourself to return more shots with your backhand during practice.<br/><br/>
 
-Your serve data presents an invaluable opportunity for improvement. Your first serve speed of <strong>201.03 km/h</strong> is great. As for your second serve, it averages at <strong>136.81 km/h</strong>, which is below the men's average, and it's a slice serve. Working on generating more spin while maintaining or improving the service speed could give your second serve that magic touch.<br/>
+Your serve data presents an invaluable opportunity for improvement. Your first serve speed of <strong>201.03 km/h</strong> is great. As for your second serve, it averages at <strong>136.81 km/h</strong>, which is below the competitive men's average, and it's a slice serve. Working on generating more spin while maintaining or improving the service speed could give your second serve that magic touch.<br/>
 
 Now, let's look at this ball trajectory plot in the rally with a top-down view. The plot reveals that you're making good use of the court space. Remember to capitalize on the depth of the court. Pushing your opponent backward will create opportunities in the court for your following shots.<br/><br/>
 
