@@ -1,6 +1,6 @@
 # Introducing TRACY: Tennis Real-time Analysis Coaching
 
-![melodica_thumbnail](https://github.com/FinityFly/melodica/assets/56236512/b87b798f-724e-4439-b776-b141aaaae50b)
+![tracy_thumbnail]([https://github.com/FinityFly/melodica/assets/56236512/b87b798f-724e-4439-b776-b141aaaae50b](https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/002/751/668/datas/gallery.jpg))
 
 >Transforming tennis footage with AI insights from ChatGPT and statistical analysis. 🎾
 Elevate your game with dynamic visuals and strategic summaries. 🚀
@@ -34,6 +34,7 @@ TRACY utilizes computer vision algorithms and pre-trained neural networks to ana
   - FFmpeg
   - OpenCV
   - OpenAI
+- [yolov3 weights](https://pjreddie.com/media/files/yolov3.weights)
 
 ## Available Scripts
 
